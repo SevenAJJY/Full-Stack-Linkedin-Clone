@@ -10,12 +10,16 @@ export default createGlobalStyle`
     }
     body {
         font-family: 'Poppins', sans-serif;
+        overflow-x: hidden;
     }
     a{
         text-decoration: none
     }
     li{
         list-style: none;
+    }
+    ::selection{
+        background-color:#f1fffe;
     }
 
 `;

@@ -10,8 +10,11 @@ import {
   Link,
   Nav,
 } from "./LoginStyled";
+import { signInAPI } from "../../redux/actions";
+import { connect } from "react-redux";
 
-const Login = () => {
+const Login = (props) => {
+  console.log(props.user);
   return (
     <Container>
       <Nav>
@@ -138,7 +141,7 @@ const Login = () => {
       <Section>
         <Div>
           <h1>Welcome to your professional community</h1>
-          <Form>
+          <Form onClick={(e) => e.preventDefault()}>
             <div>
               <label htmlFor="email">Email or phone</label>
               <input type="text" id="email" />
@@ -156,7 +159,7 @@ const Login = () => {
             <Line>
               <span>or</span>
             </Line>
-            <Google>
+            <Google onClick={() => props.signIn()}>
               <svg
                 version="1.1"
                 xmlns="http://www.w3.org/2000/svg"
@@ -192,4 +195,16 @@ const Login = () => {
   );
 };
 
-export default Login;
+const mapStateToProps = (state) => {
+  return {
+    user: state.userState.user,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signIn: () => dispatch(signInAPI()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
