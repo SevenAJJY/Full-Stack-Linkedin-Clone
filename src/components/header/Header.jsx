@@ -16,7 +16,6 @@ import { signOutAPI } from "../../redux/actions";
 import { connect } from "react-redux";
 
 const Header = (props) => {
-  console.log(props.user);
   return (
     <Container>
       <Content>

@@ -9,6 +9,7 @@ export default createGlobalStyle`
     body {
         font-family: 'Poppins', sans-serif;
         overflow-x: hidden;
+        background: #f3f2ef;
     }
     a{
         text-decoration: none
