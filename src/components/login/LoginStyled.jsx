@@ -1,6 +1,9 @@
 import styled, { css } from "styled-components";
 
-const Container = styled.div``;
+const Container = styled.div`
+  background: #fff;
+  min-height: 100vh;
+`;
 const Nav = styled.nav`
   max-width: 1128px;
   margin: auto;
