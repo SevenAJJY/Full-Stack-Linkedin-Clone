@@ -13,3 +13,14 @@ export const signInAPI = () => {
       });
   };
 };
+
+export const getUserAuth = () => {
+  // to change user account which stored in redux
+  return (dispatch) => {
+    auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        dispatch(actions.setUser(user));
+      }
+    });
+  };
+};
