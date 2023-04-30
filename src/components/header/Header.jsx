@@ -12,6 +12,7 @@ import {
   SignOut,
   Work,
 } from "./HeaderStyled";
+import { signOutAPI } from "../../redux/actions";
 import { connect } from "react-redux";
 
 const Header = (props) => {
@@ -149,7 +150,7 @@ const Header = (props) => {
                 {props.user && props.user.photoURL ? (
                   <img src={props.user.photoURL} />
                 ) : (
-                  <img src="./assets/user.png" alt="" />
+                  <img src="./assets/user.svg" alt="" />
                 )}
                 <span>
                   <p>Me</p>
@@ -214,4 +215,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Header);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signOut: () => dispatch(signOutAPI()),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

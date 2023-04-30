@@ -6,8 +6,10 @@ import Home from "./components/home/Home";
 import Header from "./components/header/Header";
 import { getUserAuth } from "./redux/actions";
 import { connect } from "react-redux";
+import RequireAuth from "./components/requireAuth/RequireAuth";
 
 const App = (props) => {
+  console.log(props);
   useEffect(() => {
     props.getUserAuth();
   }, []);
@@ -19,10 +21,10 @@ const App = (props) => {
           <Route
             path="/home"
             element={
-              <>
+              <RequireAuth>
                 <Header />
                 <Home />
-              </>
+              </RequireAuth>
             }
           />
         </Routes>
@@ -36,7 +38,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    getUserAuth: dispatch(getUserAuth()),
+    getUserAuth: () => dispatch(getUserAuth()),
   };
 };
 
