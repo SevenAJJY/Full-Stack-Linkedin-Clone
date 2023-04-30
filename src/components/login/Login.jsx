@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   Container,
   Google,
@@ -12,11 +12,13 @@ import {
 } from "./LoginStyled";
 import { signInAPI } from "../../redux/actions";
 import { connect } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Login = (props) => {
-  console.log(props.user);
+  const navigate = useNavigate();
   return (
     <Container>
+      {props.user && navigate("/home")}
       <Nav>
         <a href="/">
           <img src="/assets/linkedin.svg" alt="Linkedin Logo" />

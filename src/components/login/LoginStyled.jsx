@@ -73,6 +73,7 @@ const Div = styled.div`
       sans-serif;
     font-size: 50px;
     font-weight: 200;
+    color: ${({ theme }) => theme.colors.primary};
     @media (max-width: 768px) {
       font-size: 35px;
     }
