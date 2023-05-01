@@ -17,8 +17,5 @@ export default createGlobalStyle`
     li{
         list-style: none;
     }
-    ::selection{
-        background-color:#f1fffe;
-    }
 
 `;

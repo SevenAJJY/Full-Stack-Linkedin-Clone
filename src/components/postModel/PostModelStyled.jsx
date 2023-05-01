@@ -19,6 +19,7 @@ const Container = styled.div`
   z-index: 100000;
   background-color: rgba(0, 0, 0, 0.8);
   animation: ${fadeIn} 0.3s ease;
+  transition: all 0.3s ease;
 `;
 const Content = styled.div`
   width: 100%;
@@ -127,9 +128,14 @@ const Editor = styled.div`
   }
   input {
     width: 100%;
-    height: 35px;
+    height: 50px;
     font-size: 16px;
     margin-bottom: 20px;
+    border: none;
+    outline: none;
+    border-radius: 50px;
+    padding: 0 15px;
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 0 0 rgb(0 0 0 / 20%);
   }
 `;
 const UploadImage = styled.div`
@@ -191,9 +197,11 @@ const PostButton = styled.button`
   padding: 0 16px;
   border-radius: 20px;
   background: ${(props) =>
-    props.disabled ? "#b8b8b8" : props.theme.colors.primary};
+    props.disabled ? "#ebebeb" : props.theme.colors.primary};
   color: ${(props) => (props.disabled ? "#5a5a5a" : "#fff")};
-  font-size: 16px;
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  font-size: ${(props) => props.theme.fontSize.sm};
+
   letter-spacing: 1.1px;
   border: none;
   outline: none;

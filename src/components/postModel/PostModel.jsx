@@ -17,15 +17,52 @@ import {
 } from "./PostModelStyled";
 import { connect } from "react-redux";
 import ReactPlayer from "react-player";
+import { Timestamp } from "firebase/firestore";
 
 const PostModel = (props) => {
-  console.log(props);
-  const [editorText, setEditorTexts] = useState("");
+  const [editorText, setEditorText] = useState("");
   const [assetArea, setAssetArea] = useState("");
   const [shareImage, setShareImage] = useState("");
   const [videoLink, setVideoLink] = useState("");
 
-  const handleChange = () => {};
+  const reset = (e) => {
+    setEditorText("");
+    setShareImage("");
+    setVideoLink("");
+    setAssetArea("");
+    props.handleClick(e);
+  };
+  const switchAssetArea = (area) => {
+    setShareImage("");
+    setVideoLink("");
+    setAssetArea(area);
+  };
+  const handleChange = (e) => {
+    const image = e.target.files[0];
+    if (image === "" || image === undefined) {
+      alert(`Not an image, the file is a ${typeof image}`);
+      return;
+    } else {
+      setShareImage(image);
+    }
+  };
+
+  const handlePostArticles = (e) => {
+    e.preventDefault();
+    if (e.target !== e.currentTarget) {
+      return;
+    }
+    const payload = {
+      description: editorText,
+      image: shareImage,
+      video: videoLink,
+      user: props.user,
+      timestamp: Timestamp.now(),
+    };
+    props.postArticles(payload);
+    reset(e);
+  };
+
   return (
     <>
       {props.showModel && (
@@ -33,7 +70,7 @@ const PostModel = (props) => {
           <Content>
             <Header>
               <h2>Create post</h2>
-              <button onClick={props.handleClick}>
+              <button onClick={(e) => reset(e)}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -86,7 +123,7 @@ const PostModel = (props) => {
               <Editor>
                 <textarea
                   value={editorText}
-                  onChange={(e) => setEditorTexts(e.target.value)}
+                  onChange={(e) => setEditorText(e.target.value)}
                   placeholder="What do you want to talk about?"
                   autoFocus={true}
                 ></textarea>
@@ -102,13 +139,14 @@ const PostModel = (props) => {
                     <p>
                       <label htmlFor="file">Select images to share</label>
                     </p>
-                    {shareImage && <img src="" alt="img" />}
+                    {shareImage && (
+                      <img src={URL.createObjectURL(shareImage)} alt="img" />
+                    )}
                   </UploadImage>
                 ) : (
                   assetArea === "media" && (
                     <>
                       <input
-                        style={{ width: "100%", height: "30px" }}
                         placeholder="PLease input a video link"
                         onChange={(e) => setVideoLink(e.target.value)}
                         type="text"
@@ -124,7 +162,7 @@ const PostModel = (props) => {
             </ShareContent>
             <ShareCreation>
               <AttachAssets>
-                <AssetButton>
+                <AssetButton onClick={() => switchAssetArea("image")}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -137,7 +175,7 @@ const PostModel = (props) => {
                     <path d="M19 4H5a3 3 0 00-3 3v10a3 3 0 003 3h14a3 3 0 003-3V7a3 3 0 00-3-3zm1 13a1 1 0 01-.29.71L16 14l-2 2-6-6-4 4V7a1 1 0 011-1h14a1 1 0 011 1zm-2-7a2 2 0 11-2-2 2 2 0 012 2z"></path>
                   </svg>
                 </AssetButton>
-                <AssetButton>
+                <AssetButton onClick={() => switchAssetArea("media")}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -150,7 +188,7 @@ const PostModel = (props) => {
                     <path d="M19 4H5a3 3 0 00-3 3v10a3 3 0 003 3h14a3 3 0 003-3V7a3 3 0 00-3-3zm-9 12V8l6 4z"></path>
                   </svg>
                 </AssetButton>
-                <AssetButton>
+                <AssetButton onClick={() => switchAssetArea("document")}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -163,7 +201,7 @@ const PostModel = (props) => {
                     <path d="M3 3v15a3 3 0 003 3h9v-6h6V3zm9 8H6v-1h6zm6-3H6V7h12zm-2 8h5l-5 5z"></path>
                   </svg>
                 </AssetButton>
-                <AssetButton>
+                <AssetButton onClick={() => switchAssetArea("more")}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -193,7 +231,10 @@ const PostModel = (props) => {
                   Anyone
                 </Artdeco>
               </ShareComment>
-              <PostButton disabled={!editorText ? true : false}>
+              <PostButton
+                onClick={(e) => handlePostArticles(e)}
+                disabled={!editorText ? true : false}
+              >
                 Post
               </PostButton>
             </ShareCreation>
@@ -211,4 +252,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(PostModel);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    postArticles: (payload) => dispatch(postArticleAPI(payload)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostModel);

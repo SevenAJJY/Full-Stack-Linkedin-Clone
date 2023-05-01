@@ -16,7 +16,7 @@ const Content = styled.div`
   display: flex;
   margin: 0 auto;
   min-height: 100%;
-  width: 1128px;
+  max-width: 1128px;
 `;
 
 const Logo = styled.a`
