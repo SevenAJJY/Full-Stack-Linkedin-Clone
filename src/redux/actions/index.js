@@ -37,3 +37,12 @@ export const signOutAPI = () => {
       });
   };
 };
+
+export postArticleAPI = (payload) =>{
+  return (dispatch) => {
+    dispatch(actions.setLoading(true));
+    if(payload.image) {
+      
+    }
+  }
+}
