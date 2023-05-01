@@ -9,6 +9,7 @@ import {
   Widget,
   Item,
   PreApp,
+  CommunityPanel,
 } from "./SidebarStyled";
 import { connect } from "react-redux";
 
@@ -22,11 +23,9 @@ const Sidebar = (props) => {
           <a>
             <Photo
               img={
-                // props.user.photoURL &&
-                // (props.user.photoURL
-                //   ? props.user.photoURL
-                //   : "./assets/photo.svg")
-                "./assets/photo.svg"
+                props.user && props.user.photoURL
+                  ? props.user.photoURL
+                  : "./assets/photo.svg"
               }
             />
             <Link>
@@ -44,7 +43,6 @@ const Sidebar = (props) => {
               </div>
               <span>Grow Your Network</span>
             </div>
-            <img src="/images/widget-icon.svg" alt="" />
           </a>
         </Widget>
         <PreApp>
@@ -78,21 +76,37 @@ const Sidebar = (props) => {
         <Item>
           <span>
             <svg
-              role="none"
-              aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
               viewBox="0 0 16 16"
               data-supported-dps="16x16"
-              data-test-icon="bookmark-fill-small"
+              fill="currentColor"
+              width="16"
+              height="16"
+              focusable="false"
             >
-              <use href="#bookmark-fill-small" width="16" height="16"></use>
+              <path d="M12 1H4a1 1 0 00-1 1v13.64l5-3.36 5 3.36V2a1 1 0 00-1-1z"></path>
             </svg>
             My Items
           </span>
         </Item>
       </IdentityCard>
+      <CommunityPanel>
+        <a>
+          <span>Groups</span>
+        </a>
+        <a>
+          <span>
+            Events
+            <img src="/images/plus-icon.svg" alt="" />
+          </span>
+        </a>
+        <a>
+          <span>Follow Hashtags</span>
+        </a>
+        <a>
+          <span>Discover More</span>
+        </a>
+      </CommunityPanel>
     </Container>
   );
 };

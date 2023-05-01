@@ -6,3 +6,16 @@ export const setUser = (payload) => {
     user: payload,
   };
 };
+
+export const setLoading = (status) => {
+  return {
+    type: actions.SET_LOADING_STATUS,
+    status: status,
+  };
+};
+export const getLoading = (payload) => {
+  return {
+    type: actions.GET_ARTICLES,
+    payload: payload,
+  };
+};

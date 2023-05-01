@@ -2,6 +2,7 @@ const mainTheme = {
   colors: {
     primary: "#0a66c2",
     bodyBg: "#f3f2ef",
+    bgHover: "rgba(0, 0, 0, 0.08)",
     textColor: "#666666",
     textColorDark: "#000000e6",
     textHover: "rgba(0, 0, 0, 0.9)",
