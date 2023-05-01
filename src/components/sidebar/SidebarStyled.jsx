@@ -67,8 +67,7 @@ cursor: pointer;
     align-items: center;
     padding: 4px 12px;
     &:hover {
-      background-color: rgba(0, 0, 0, 0.08);
-    }
+    background-color: ${({ theme }) => theme.colors.bgHover};    }
     div {
       display: flex;
       flex-direction: column;
@@ -110,18 +109,17 @@ const PreApp = styled.div`
     width: 100%;
 
     & > div {
-      &:hover {
-        background-color: rgba(0, 0, 0, 0.08);
-      }
+      margin-right: 15px;
+      line-height: 1.333;
       span {
         font-size: ${({ theme }) => theme.fontSize.xs};
       }
       div {
-        margin-left: 15px;
+        margin-left: 7px;
         display: flex;
         align-items: center;
         svg {
-          height: 20px;
+          height: 17px;
         }
         span {
           text-decoration: underline;
@@ -132,9 +130,13 @@ const PreApp = styled.div`
       }
     }
   }
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.bgHover};
+  }
 `;
 const Item = styled.div`
   display: block;
+  cursor: pointer;
   border-color: rgba(0, 0, 0, 0.6);
   text-align: left;
   padding: 12px;
@@ -142,9 +144,43 @@ const Item = styled.div`
   span {
     display: flex;
     align-items: center;
+    svg {
+      margin-right: 5px;
+      color: ${({ theme }) => theme.colors.textColor};
+    }
   }
   &:hover {
-    background-color: rgba(0, 0, 0, 0.08);
+    background-color: ${({ theme }) => theme.colors.bgHover};
+  }
+`;
+
+const CommunityPanel = styled(IdentityCard)`
+  padding: 8px 0 0;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  a {
+    color: ${({ theme }) => theme.colors.primary};
+    padding: 4px 12px;
+    font-size: ${({ theme }) => theme.fontSize.xs};
+    font-weight: 500;
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    span {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    &:last-child {
+      color: rgba(0, 0, 0, 0.6);
+      border-top: 1px solid #d6cec2;
+      padding: 12px;
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.08);
+      }
+    }
   }
 `;
 
@@ -158,4 +194,5 @@ export {
   Widget,
   Item,
   PreApp,
+  CommunityPanel,
 };
