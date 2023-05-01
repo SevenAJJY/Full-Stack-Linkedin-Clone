@@ -95,10 +95,7 @@ const Sidebar = (props) => {
           <span>Groups</span>
         </a>
         <a>
-          <span>
-            Events
-            <img src="/images/plus-icon.svg" alt="" />
-          </span>
+          <span>Events</span>
         </a>
         <a>
           <span>Follow Hashtags</span>

@@ -6,7 +6,7 @@ const Container = styled.div`
 `;
 const Layout = styled.div`
   min-height: 100%;
-  width: 1128px;
+  max-width: 1128px;
   margin: 2.4rem auto;
   display: grid;
   grid-template-areas: "sidebar main aside";
