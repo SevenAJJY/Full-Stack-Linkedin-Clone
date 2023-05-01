@@ -18,6 +18,7 @@ import {
 import { connect } from "react-redux";
 import ReactPlayer from "react-player";
 import { Timestamp } from "firebase/firestore";
+import { postArticleAPI } from "../../redux/actions";
 
 const PostModel = (props) => {
   const [editorText, setEditorText] = useState("");
