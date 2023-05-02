@@ -147,7 +147,7 @@ const SharedActor = styled.div`
         text-align: left;
         &:first-child {
           font-size: 14px;
-          font-weight: 700;
+          font-weight: 600;
           color: ${({ theme }) => theme.colors.textColor};
         }
         &:nth-child(n + 2) {
@@ -193,10 +193,13 @@ const SocialCounts = styled.ul`
 
   overflow: auto;
   margin: 0 16px;
-  padding: 8px 0;
+  padding: 0.8rem 0;
   border-bottom: 1px solid #e9efdf;
   color: rgba(0, 0, 0, 0.6);
   list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   li {
     margin-right: 5px;
     font-size: 12px;
@@ -218,21 +221,24 @@ const SocialActions = styled.div`
   justify-content: initial;
   column-gap: 5px;
   padding: 0.4rem 1.2rem;
-  margin: 4px 12px;
+  margin: 0px 12px;
   min-height: 40px;
-  ${"" /* padding-bottom: 5px; */}
   button {
     cursor: pointer;
-
+    color: ${({ theme }) => theme.colors.textColor};
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     padding: 8px;
     border: none;
     background: transparent;
+    border-radius: 0.4rem;
     span {
       margin-left: 4px;
-      color: rgba(0, 0, 0, 0.6);
       font-size: 14px;
+    }
+    &:hover {
+      background: ${({ theme }) => theme.colors.bgHover};
     }
   }
   button.active {

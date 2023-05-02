@@ -79,9 +79,9 @@ export const postArticleAPI = (payload) => {
               shareImg: downloadURl,
             });
           });
+          dispatch(actions.setLoading(false));
         }
       );
-      dispatch(actions.setLoading(false));
     } else if (payload.video) {
       const collRef = collection(db, "articles");
       addDoc(collRef, {
