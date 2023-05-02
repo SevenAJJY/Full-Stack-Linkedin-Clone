@@ -80,6 +80,8 @@ const Recommendation = styled.a`
 `;
 
 const BannerCard = styled(FollowCard)`
+  padding: 0px;
+
   img {
     width: 100%;
     height: 100%;

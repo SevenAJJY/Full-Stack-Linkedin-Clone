@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import {
   Container,
   Google,
@@ -16,9 +16,11 @@ import { useNavigate } from "react-router-dom";
 
 const Login = (props) => {
   const navigate = useNavigate();
+  useEffect(() => {
+    props.user && navigate("/home");
+  }, [props.user]);
   return (
     <Container>
-      {props.user && navigate("/home")}
       <Nav>
         <a href="/">
           <img src="/assets/linkedin.svg" alt="Linkedin Logo" />

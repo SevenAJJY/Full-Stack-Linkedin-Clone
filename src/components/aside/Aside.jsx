@@ -16,7 +16,18 @@ const Aside = () => {
         <FollowCard>
           <Title>
             <h2>Add to your feed</h2>
-            <img src="/images/feed-icon.svg" alt="" />
+            <svg
+              role="none"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              data-supported-dps="16x16"
+              data-test-icon="signal-notice-small"
+            >
+              <use href="#signal-notice-small" width="16" height="16"></use>
+            </svg>
           </Title>
           <FeedList>
             <li>
@@ -40,7 +51,18 @@ const Aside = () => {
           </FeedList>
           <Recommendation>
             View all recommendation
-            <img src="/images/right-icon.svg" alt="" />
+            <svg
+              role="none"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              data-supported-dps="16x16"
+              data-test-icon="arrow-right-small"
+            >
+              <use href="#arrow-right-small" width="16" height="16"></use>
+            </svg>
           </Recommendation>
         </FollowCard>
         <BannerCard>

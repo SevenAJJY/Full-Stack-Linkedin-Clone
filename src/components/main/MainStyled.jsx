@@ -75,6 +75,7 @@ const Icon = styled.span`
 const Line = styled.div`
   width: 100%;
   margin-bottom: 8px;
+  position: relative;
   button {
     display: flex;
     justify-content: space-between;
@@ -103,6 +104,33 @@ const Line = styled.div`
           color: ${({ theme }) => theme.colors.textColor};
         }
       }
+    }
+  }
+  & > div {
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 0 0 rgb(0 0 0 / 20%);
+    display: flex;
+    flex-direction: column;
+    max-width: 170px;
+    padding: 5px 0;
+    position: absolute;
+    bottom: -87px;
+    right: 0;
+    z-index: 2;
+    border-radius: 5px 0 5px 5px;
+    width: 100%;
+    background: #fff;
+
+    span {
+      cursor: pointer;
+      padding: 7px;
+      color: ${({ theme }) => theme.colors.textColor};
+      font-size: ${({ theme }) => theme.fontSize.sm};
+      &:hover {
+        background: ${({ theme }) => theme.colors.bgHover};
+      }
+    }
+    .active {
+      border-left: 2px solid #5f9b41;
     }
   }
 `;

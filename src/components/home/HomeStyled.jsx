@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  padding-top: 52px;
+  padding-top: 40px;
   background: ${({ theme }) => theme.colors.bodyBg};
 `;
 const Layout = styled.div`
@@ -18,17 +18,15 @@ const Layout = styled.div`
     padding: 0 20px;
   }
 
-  ${
-    "" /* @media screen and (min-width: 992px) {
+  @media screen and (min-width: 992px) {
     grid-template-areas: "sidebar main aside";
     grid-template-columns: minmax(0, 235px) minmax(0, auto) minmax(0, 300px);
   }
-  @media screen and (min-width: 768px) {
+  @media screen and (max-width: 992px) {
     grid-template-areas:
       "sidebar main"
-      ". aside";
+      "sidebar aside";
     grid-template-columns: minmax(0, 235px) minmax(0, auto);
-  } */
   }
 `;
 

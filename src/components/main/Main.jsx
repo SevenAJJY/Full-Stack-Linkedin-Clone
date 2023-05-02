@@ -18,13 +18,36 @@ import ReactPlayer from "react-player";
 import { getArticlesAPI } from "../../redux/actions";
 
 const Main = (props) => {
+  const [showSort, setShowSort] = useState(false);
+  const [ordered, setOrdered] = useState({
+    activeItem: null,
+    objects: [
+      { id: 1, text: "top", sort: "desc" },
+      { id: 2, text: "Racent", sort: "asc" },
+    ],
+  });
+  const toggleActive = (index) => {
+    setOrdered({ ...ordered, activeItem: ordered.objects[index] });
+  };
+
+  const toggleActiveClass = (index) => {
+    if (ordered.objects[index] === ordered.activeItem) {
+      return "active";
+    }
+    return null;
+  };
+  const handleSort = () => {
+    setShowSort(!showSort);
+  };
   const [showModel, setShowModel] = useState(false);
   const handleClick = () => {
     setShowModel(!showModel);
   };
 
   useEffect(() => {
-    props.getArticles();
+    props.getArticles(
+      ordered.activeItem !== null ? ordered.activeItem.sort : "desc"
+    );
   });
   return (
     <Container>
@@ -107,7 +130,7 @@ const Main = (props) => {
         </div>
       </ShareBox>
       <Line>
-        <button>
+        <button onClick={handleSort}>
           <hr />
           <div>
             <span>Sort by:</span>
@@ -125,6 +148,21 @@ const Main = (props) => {
             </svg>
           </div>
         </button>
+        {showSort ? (
+          <div>
+            {ordered.objects.map((item, index) => (
+              <span
+                key={index}
+                className={`${toggleActiveClass(index)}`}
+                onClick={() => toggleActive(index)}
+              >
+                {item.text}
+              </span>
+            ))}
+          </div>
+        ) : (
+          ""
+        )}
       </Line>
       {props.articles.length <= 0 ? (
         <p>There are no articles</p>
@@ -262,7 +300,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getArticles: () => dispatch(getArticlesAPI()),
+    getArticles: (sort) => dispatch(getArticlesAPI(sort)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Main);
