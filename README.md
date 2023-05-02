@@ -15,9 +15,16 @@ Run `npm run dev` to start application.
 ### Preview
 
 <p align="center">
-    <img src="./public/assets/login.PNG" />
-  <img src="./public/assets/preview.PNG" />
+    <img src="./public/assets/loginPreview.PNG" />
 </p>
+
+----
+
+<p align="center">
+    <img src="./public/assets/homePreview.PNG" />
+
+</p>
+
 
 ----
 
