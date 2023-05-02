@@ -8,7 +8,7 @@ const IdentityCard = styled.div`
   overflow: hidden;
   margin-bottom: 8px;
   background-color: #fff;
-  border-radius: 5px;
+  border-radius: 10px;
   transition: box-shadow 83ms;
   position: relative;
   border: none;
