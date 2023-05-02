@@ -13,13 +13,16 @@ Run `npm run dev` to start application.
 ----
 
 ### Preview
-
+`Login page`
 <p align="center">
     <img src="./public/assets/loginPreview.PNG" />
 </p>
 
+
 ----
 
+
+`Home page`
 <p align="center">
     <img src="./public/assets/homePreview.PNG" />
 
