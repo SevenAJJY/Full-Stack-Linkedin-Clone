@@ -8,6 +8,20 @@ Put your credentials to  `.env` .
 
 
 
-Run `pnpm dev` to start application.
+Run `npm run dev` to start application.
 
 ----
+
+### Preview
+
+<p align="center">
+    <img src="./public/assets/login.PNG" />
+  <img src="./public/assets/preview.PNG" />
+</p>
+
+----
+
+<p align="center">
+Give a :star: if you liked it.<br>
+Made with :heart: and react JS.
+</p>
