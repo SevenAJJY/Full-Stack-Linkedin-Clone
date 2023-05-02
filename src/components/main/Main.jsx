@@ -1,13 +1,54 @@
-import React, { useState } from "react";
-import { Container, ShareBox, Icon, Line, Content } from "./MainStyled";
+import React, { useEffect, useState } from "react";
+import {
+  Container,
+  ShareBox,
+  Icon,
+  Line,
+  Content,
+  Article,
+  SharedActor,
+  Description,
+  ShareImg,
+  SocialCounts,
+  SocialActions,
+} from "./MainStyled";
 import { connect } from "react-redux";
 import PostModel from "../postModel/PostModel";
+import ReactPlayer from "react-player";
+import { getArticlesAPI } from "../../redux/actions";
 
 const Main = (props) => {
+  const [showSort, setShowSort] = useState(false);
+  const [ordered, setOrdered] = useState({
+    activeItem: null,
+    objects: [
+      { id: 1, text: "top", sort: "desc" },
+      { id: 2, text: "Racent", sort: "asc" },
+    ],
+  });
+  const toggleActive = (index) => {
+    setOrdered({ ...ordered, activeItem: ordered.objects[index] });
+  };
+
+  const toggleActiveClass = (index) => {
+    if (ordered.objects[index] === ordered.activeItem) {
+      return "active";
+    }
+    return null;
+  };
+  const handleSort = () => {
+    setShowSort(!showSort);
+  };
   const [showModel, setShowModel] = useState(false);
   const handleClick = () => {
     setShowModel(!showModel);
   };
+
+  useEffect(() => {
+    props.getArticles(
+      ordered.activeItem !== null ? ordered.activeItem.sort : "desc"
+    );
+  });
   return (
     <Container>
       <ShareBox>
@@ -89,7 +130,7 @@ const Main = (props) => {
         </div>
       </ShareBox>
       <Line>
-        <button>
+        <button onClick={handleSort}>
           <hr />
           <div>
             <span>Sort by:</span>
@@ -107,8 +148,143 @@ const Main = (props) => {
             </svg>
           </div>
         </button>
+        {showSort ? (
+          <div>
+            {ordered.objects.map((item, index) => (
+              <span
+                key={index}
+                className={`${toggleActiveClass(index)}`}
+                onClick={() => toggleActive(index)}
+              >
+                {item.text}
+              </span>
+            ))}
+          </div>
+        ) : (
+          ""
+        )}
       </Line>
-      <Content></Content>
+      {props.articles.length <= 0 ? (
+        <p>There are no articles</p>
+      ) : (
+        <Content>
+          {props.loading && <img src="/assets/loader.svg" />}
+          {props.articles.length > 0 &&
+            props.articles.map((article, index) => (
+              <Article key={index} article={article}>
+                <SharedActor>
+                  <a>
+                    {article.actor.image ? (
+                      <img src={article.actor.image} alt="" />
+                    ) : (
+                      <img src="/images/user.svg" alt="" />
+                    )}
+                    <div>
+                      <span>{article.actor.title}</span>
+                      <span>{article.actor.description}</span>
+                      <span>
+                        {article.actor.date.toDate().toLocaleDateString()}
+                      </span>
+                    </div>
+                  </a>
+                  <button>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      data-supported-dps="24x24"
+                      fill="currentColor"
+                      width="24"
+                      height="24"
+                      focusable="false"
+                    >
+                      <path d="M14 12a2 2 0 11-2-2 2 2 0 012 2zM4 10a2 2 0 102 2 2 2 0 00-2-2zm16 0a2 2 0 102 2 2 2 0 00-2-2z"></path>
+                    </svg>
+                  </button>
+                </SharedActor>
+                <Description>{article.description}</Description>
+                <ShareImg>
+                  <a>
+                    {!article.shareImg && article.video ? (
+                      <ReactPlayer width={"100%"} url={article.video} />
+                    ) : (
+                      article.shareImg && <img src={article.shareImg} />
+                    )}
+                  </a>
+                </ShareImg>
+                <SocialCounts>
+                  <li>
+                    <button>
+                      <img src="/assets/like.svg" alt="" />
+                      <img src="/assets/heart.svg" alt="" />
+                      <span>100</span>
+                    </button>
+                  </li>
+                  <li>
+                    <a>{article.comments} comments</a>
+                  </li>
+                </SocialCounts>
+                <SocialActions>
+                  <button>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      data-supported-dps="24x24"
+                      fill="rgba(0, 0, 0, 0.6)"
+                      width="24"
+                      height="24"
+                      focusable="false"
+                    >
+                      <path d="M19.46 11l-3.91-3.91a7 7 0 01-1.69-2.74l-.49-1.47A2.76 2.76 0 0010.76 1 2.75 2.75 0 008 3.74v1.12a9.19 9.19 0 00.46 2.85L8.89 9H4.12A2.12 2.12 0 002 11.12a2.16 2.16 0 00.92 1.76A2.11 2.11 0 002 14.62a2.14 2.14 0 001.28 2 2 2 0 00-.28 1 2.12 2.12 0 002 2.12v.14A2.12 2.12 0 007.12 22h7.49a8.08 8.08 0 003.58-.84l.31-.16H21V11zM19 19h-1l-.73.37a6.14 6.14 0 01-2.69.63H7.72a1 1 0 01-1-.72l-.25-.87-.85-.41A1 1 0 015 17l.17-1-.76-.74A1 1 0 014.27 14l.66-1.09-.73-1.1a.49.49 0 01.08-.7.48.48 0 01.34-.11h7.05l-1.31-3.92A7 7 0 0110 4.86V3.75a.77.77 0 01.75-.75.75.75 0 01.71.51L12 5a9 9 0 002.13 3.5l4.5 4.5H19z"></path>
+                    </svg>
+                    <span>Like</span>
+                  </button>
+                  <button>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      data-supported-dps="24x24"
+                      fill="currentColor"
+                      width="24"
+                      height="24"
+                      focusable="false"
+                    >
+                      <path d="M7 9h10v1H7zm0 4h7v-1H7zm16-2a6.78 6.78 0 01-2.84 5.61L12 22v-4H8A7 7 0 018 4h8a7 7 0 017 7zm-2 0a5 5 0 00-5-5H8a5 5 0 000 10h6v2.28L19 15a4.79 4.79 0 002-4z"></path>
+                    </svg>
+                    <span>Comment</span>
+                  </button>
+                  <button>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      data-supported-dps="24x24"
+                      fill="currentColor"
+                      width="24"
+                      height="24"
+                      focusable="false"
+                    >
+                      <path d="M23 12l-4.61 7H16l4-6H8a3.92 3.92 0 00-4 3.84V17a4 4 0 00.19 1.24L5.12 21H3l-.73-2.22A6.4 6.4 0 012 16.94 6 6 0 018 11h12l-4-6h2.39z"></path>
+                    </svg>
+                    <span>Share</span>
+                  </button>
+                  <button>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      data-supported-dps="24x24"
+                      fill="currentColor"
+                      width="24"
+                      height="24"
+                      focusable="false"
+                    >
+                      <path d="M21 3L0 10l7.66 4.26L16 8l-6.26 8.34L14 24l7-21z"></path>
+                    </svg>
+                    <span>Send</span>
+                  </button>
+                </SocialActions>
+              </Article>
+            ))}
+        </Content>
+      )}
       <PostModel showModel={showModel} handleClick={handleClick} />
     </Container>
   );
@@ -118,6 +294,13 @@ const mapStateToProps = (state) => {
   return {
     loading: state.articleState.loading,
     user: state.userState.user,
+    articles: state.articleState.articles,
   };
 };
-export default connect(mapStateToProps)(Main);
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getArticles: (sort) => dispatch(getArticlesAPI(sort)),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

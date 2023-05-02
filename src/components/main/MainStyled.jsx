@@ -8,7 +8,7 @@ const CommonBox = styled.div`
   overflow: hidden;
   margin-bottom: 8px;
   background-color: #fff;
-  border-radius: 0.8rem;
+  border-radius: 10px;
   position: relative;
   border: none;
   box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 0 0 rgb(0 0 0 / 20%);
@@ -74,6 +74,8 @@ const Icon = styled.span`
 `;
 const Line = styled.div`
   width: 100%;
+  margin-bottom: 8px;
+  position: relative;
   button {
     display: flex;
     justify-content: space-between;
@@ -104,7 +106,190 @@ const Line = styled.div`
       }
     }
   }
-`;
-const Content = styled.div``;
+  & > div {
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 0 0 rgb(0 0 0 / 20%);
+    display: flex;
+    flex-direction: column;
+    max-width: 170px;
+    padding: 5px 0;
+    position: absolute;
+    bottom: -87px;
+    right: 0;
+    z-index: 2;
+    border-radius: 5px 0 5px 5px;
+    width: 100%;
+    background: #fff;
 
-export { Container, ShareBox, Icon, Line, Content };
+    span {
+      cursor: pointer;
+      padding: 7px;
+      color: ${({ theme }) => theme.colors.textColor};
+      font-size: ${({ theme }) => theme.fontSize.sm};
+      &:hover {
+        background: ${({ theme }) => theme.colors.bgHover};
+      }
+    }
+    .active {
+      border-left: 2px solid #5f9b41;
+    }
+  }
+`;
+const Content = styled.div`
+  text-align: center;
+  & > img {
+    width: 70px;
+  }
+`;
+const Article = styled(CommonBox)`
+  padding: 0;
+  margin: 0 0 8px;
+  overflow: visible;
+`;
+
+const SharedActor = styled.div`
+  padding-right: 40px;
+  flex-wrap: nowrap;
+  padding: 1.2rem 1.6rem 0;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  a {
+    margin-right: 12px;
+    flex-grow: 1;
+    overflow: hidden;
+    display: flex;
+    img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+    }
+    & > div {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      flex-basis: 0;
+      margin-left: 8px;
+      overflow: hidden;
+      line-height: 1.4;
+      span {
+        text-align: left;
+        &:first-child {
+          font-size: 14px;
+          font-weight: 600;
+          color: ${({ theme }) => theme.colors.textColor};
+        }
+        &:nth-child(n + 2) {
+          font-size: 12px;
+          color: rgba(0, 0, 0, 0.6);
+        }
+      }
+    }
+  }
+  button {
+    cursor: pointer;
+    position: absolute;
+    top: 7px;
+    right: 10px;
+    border: none;
+    outline: none;
+    background: transparent;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    &:hover {
+      background: ${({ theme }) => theme.colors.bgHover};
+    }
+  }
+`;
+const Description = styled.div`
+  padding: 0 16px;
+  overflow: hidden;
+  font-size: 14px;
+  text-align: left;
+`;
+
+const ShareImg = styled.div`
+  margin: 8px 0 0px;
+  background-color: #f9fafb;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+`;
+const SocialCounts = styled.ul`
+  line-height: 1.3;
+
+  overflow: auto;
+  margin: 0 16px;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid #e9efdf;
+  color: rgba(0, 0, 0, 0.6);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  li {
+    margin-right: 5px;
+    font-size: 12px;
+    button {
+      display: flex;
+      border: none;
+      color: rgba(0, 0, 0, 0.6);
+      background: transparent;
+      span {
+        padding-left: 5px;
+      }
+    }
+  }
+`;
+
+const SocialActions = styled.div`
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: initial;
+  column-gap: 5px;
+  padding: 0.4rem 1.2rem;
+  margin: 0px 12px;
+  min-height: 40px;
+  button {
+    cursor: pointer;
+    color: ${({ theme }) => theme.colors.textColor};
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border: none;
+    background: transparent;
+    border-radius: 0.4rem;
+    span {
+      margin-left: 4px;
+      font-size: 14px;
+    }
+    &:hover {
+      background: ${({ theme }) => theme.colors.bgHover};
+    }
+  }
+  button.active {
+    span {
+      color: #0a66c2;
+      font-weight: 600;
+    }
+    svg {
+      fill: #0a66c2;
+    }
+  }
+`;
+
+export {
+  Container,
+  ShareBox,
+  Icon,
+  Line,
+  Content,
+  Article,
+  SharedActor,
+  Description,
+  ShareImg,
+  SocialCounts,
+  SocialActions,
+};
