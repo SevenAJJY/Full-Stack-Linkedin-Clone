@@ -2,7 +2,13 @@ import { auth, db, provider, storage } from "../../firebase";
 import { signInWithPopup } from "firebase/auth";
 import * as actions from "../actions/actions";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import { addDoc, collection } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  onSnapshot,
+  orderBy,
+  query,
+} from "firebase/firestore";
 
 export const signInAPI = () => {
   return (dispatch) => {
@@ -107,5 +113,17 @@ export const postArticleAPI = (payload) => {
       });
       dispatch(actions.setLoading(false));
     }
+  };
+};
+
+export const getArticlesAPI = (order = "desc") => {
+  return (dispatch) => {
+    let payload;
+    const collRef = collection(db, "articles");
+    const orderedRef = query(collRef, orderBy("actor.date", order));
+    onSnapshot(orderedRef, (snapshot) => {
+      payload = snapshot.docs.map((doc) => doc.data());
+      dispatch(actions.getArticles(payload));
+    });
   };
 };

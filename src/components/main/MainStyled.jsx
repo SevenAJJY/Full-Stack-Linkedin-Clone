@@ -74,6 +74,7 @@ const Icon = styled.span`
 `;
 const Line = styled.div`
   width: 100%;
+  margin-bottom: 8px;
   button {
     display: flex;
     justify-content: space-between;
@@ -105,6 +106,156 @@ const Line = styled.div`
     }
   }
 `;
-const Content = styled.div``;
+const Content = styled.div`
+  text-align: center;
+  & > img {
+    width: 70px;
+  }
+`;
+const Article = styled(CommonBox)`
+  padding: 0;
+  margin: 0 0 8px;
+  overflow: visible;
+`;
 
-export { Container, ShareBox, Icon, Line, Content };
+const SharedActor = styled.div`
+  padding-right: 40px;
+  flex-wrap: nowrap;
+  padding: 1.2rem 1.6rem 0;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  a {
+    margin-right: 12px;
+    flex-grow: 1;
+    overflow: hidden;
+    display: flex;
+    img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+    }
+    & > div {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      flex-basis: 0;
+      margin-left: 8px;
+      overflow: hidden;
+      line-height: 1.4;
+      span {
+        text-align: left;
+        &:first-child {
+          font-size: 14px;
+          font-weight: 700;
+          color: ${({ theme }) => theme.colors.textColor};
+        }
+        &:nth-child(n + 2) {
+          font-size: 12px;
+          color: rgba(0, 0, 0, 0.6);
+        }
+      }
+    }
+  }
+  button {
+    cursor: pointer;
+    position: absolute;
+    top: 7px;
+    right: 10px;
+    border: none;
+    outline: none;
+    background: transparent;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    &:hover {
+      background: ${({ theme }) => theme.colors.bgHover};
+    }
+  }
+`;
+const Description = styled.div`
+  padding: 0 16px;
+  overflow: hidden;
+  font-size: 14px;
+  text-align: left;
+`;
+
+const ShareImg = styled.div`
+  margin: 8px 0 0px;
+  background-color: #f9fafb;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+`;
+const SocialCounts = styled.ul`
+  line-height: 1.3;
+
+  overflow: auto;
+  margin: 0 16px;
+  padding: 8px 0;
+  border-bottom: 1px solid #e9efdf;
+  color: rgba(0, 0, 0, 0.6);
+  list-style: none;
+  li {
+    margin-right: 5px;
+    font-size: 12px;
+    button {
+      display: flex;
+      border: none;
+      color: rgba(0, 0, 0, 0.6);
+      background: transparent;
+      span {
+        padding-left: 5px;
+      }
+    }
+  }
+`;
+
+const SocialActions = styled.div`
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: initial;
+  column-gap: 5px;
+  padding: 0.4rem 1.2rem;
+  margin: 4px 12px;
+  min-height: 40px;
+  ${"" /* padding-bottom: 5px; */}
+  button {
+    cursor: pointer;
+
+    display: inline-flex;
+    align-items: center;
+    padding: 8px;
+    border: none;
+    background: transparent;
+    span {
+      margin-left: 4px;
+      color: rgba(0, 0, 0, 0.6);
+      font-size: 14px;
+    }
+  }
+  button.active {
+    span {
+      color: #0a66c2;
+      font-weight: 600;
+    }
+    svg {
+      fill: #0a66c2;
+    }
+  }
+`;
+
+export {
+  Container,
+  ShareBox,
+  Icon,
+  Line,
+  Content,
+  Article,
+  SharedActor,
+  Description,
+  ShareImg,
+  SocialCounts,
+  SocialActions,
+};

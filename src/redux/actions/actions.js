@@ -13,7 +13,7 @@ export const setLoading = (status) => {
     status: status,
   };
 };
-export const getLoading = (payload) => {
+export const getArticles = (payload) => {
   return {
     type: actions.GET_ARTICLES,
     payload: payload,
