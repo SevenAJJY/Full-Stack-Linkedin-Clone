@@ -140,8 +140,15 @@ const Editor = styled.div`
 `;
 const UploadImage = styled.div`
   text-align: center;
+  border: 1px dashed;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
   img {
     width: 100%;
+  }
+  &:hover {
+    background: #003dff1a;
   }
 `;
 const ShareCreation = styled.div`
