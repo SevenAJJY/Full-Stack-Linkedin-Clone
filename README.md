@@ -36,7 +36,6 @@ Run `npm run dev` to start application.
 
 ### Future Plans
 
-<hr />
 
 <ul>
     <li>Might add more login methods</li>
