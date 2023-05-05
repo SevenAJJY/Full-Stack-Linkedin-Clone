@@ -44,6 +44,9 @@ Run `npm run dev` to start application.
     <li>Sort posts</li>
 </ul>
 
+
+----
+
 ### Future Plans
 
 
