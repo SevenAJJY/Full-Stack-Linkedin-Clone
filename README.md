@@ -2,6 +2,27 @@
 
 Built using React JS, Redux, Firebase & Styled-Components 
 
+----
+
+### Preview
+
+
+`Login page`
+<p align="center">
+    <img src="./public/assets/loginPreview.PNG" />
+</p>
+
+
+----
+
+
+`Home page`
+<p align="center">
+    <img src="./public/assets/homePreview.PNG" />
+
+</p>
+
+
 
 Put your credentials to  `.env` .
 
@@ -23,17 +44,6 @@ Run `npm run dev` to start application.
     <li>Sort posts</li>
 </ul>
 
-----
-
-### Preview
-
-
-`Login page`
-<p align="center">
-    <img src="./public/assets/loginPreview.PNG" />
-</p>
-
-
 ### Future Plans
 
 
@@ -45,15 +55,6 @@ Run `npm run dev` to start application.
     <li>Realtime update likes and posts</li>
 </ul>
 
-
-----
-
-
-`Home page`
-<p align="center">
-    <img src="./public/assets/homePreview.PNG" />
-
-</p>
 
 
 ----
