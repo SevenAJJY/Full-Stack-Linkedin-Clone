@@ -34,6 +34,19 @@ Run `npm run dev` to start application.
 </p>
 
 
+### Future Plans
+
+<hr />
+
+<ul>
+    <li>Might add more login methods</li>
+    <li>Post deleting functionality</li>
+    <li>Add comments on post</li>
+    <li>Like posts</li>
+    <li>Realtime update likes and posts</li>
+</ul>
+
+
 ----
 
 
